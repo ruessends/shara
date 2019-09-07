@@ -1,21 +1,21 @@
 <? PHP
-Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ  Zadarma_API \ Api ;
+èñïîëüçîâàòü  Zadarma_API \ Api ;
 require_once  __DIR__ . DIRECTORY_SEPARATOR . ' include.php ' ;
 define ( ' USE_SANDBOX ' , true );
-$ api  =  Ð½Ð¾Ð²Ñ‹Ð¹  Api ( KEY , SECRET , USE_SANDBOX );
-// TODO: Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ð°ÑˆÐ¸ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ
-$ sourceNumber  =  ' ' ; // Ð² Ð¼ÐµÐ¶Ð´ÑƒÐ½Ð°Ñ€Ð¾Ð´Ð½Ð¾Ð¼ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ðµ
+$ api  =   íîâûé  Api ( KEY a2bbebe1ffc8d6da5cf7, SECRET 9848bdf616fca2b675ae , USE_SANDBOX );
+// TODO: ââåäèòå âàøè çíà÷åíèÿ
+$ sourceNumber  =  ' ' ; // â ìåæäóíàðîäíîì ôîðìàòå
 $ destinationNumber  =  ' ' ;
-$ sip  =  ' ' ; // Ð½Ð¾Ð¼ÐµÑ€ Ð³Ð»Ð¾Ñ‚ÐºÐ°
-$ pbx  =  ' ' ; // Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½Ð¸Ð¹ Ð½Ð¾Ð¼ÐµÑ€
+$ sip  =  '180469-100' ; // íîìåð ãëîòêà
+$ pbx  =  'pbx.zadarma.com' ; // âíóòðåííèé íîìåð
 $ callId  =  ' ' ;
 $ destinationEmail  =  ' ' ;
-// Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¾Ð½Ð½Ñ‹Ðµ Ð¼ÐµÑ‚Ð¾Ð´Ñ‹
+// èíôîðìàöèîííûå ìåòîäû
 $ result  =  $ api -> getBalance ();
 $ result  =  $ api -> getPrice ( $ destinationEmail , $ sourceNumber );
 $ result  =  $ api -> getTimezone ();
 $ result  =  $ api -> getTariff ();
-// Ð¼ÐµÑ‚Ð¾Ð´Ñ‹ pbx
+// ìåòîäû pbx
 $ result  =  $ api -> getPbxInternal ();
 $ result  =  $ api -> getPbxStatus ( $ pbx );
 $ result  =  $ api -> getPbxRecord ( $ callId , null );
@@ -23,18 +23,18 @@ $ result  =  $ api -> getPbxRedirection ( $ pbx );
 $ result  =  $ api -> setPbxPhoneRedirection ( $ pbx , $ destinationNumber , false , true );
 $ result  =  $ api -> setPbxVoicemailRedirection ( $ pbx , $ destinationEmail , true , Api :: PBX_REDIRECTION_OWN_GREETING );
 $ result  =  $ api -> setPbxRedirectionOff ( $ pbx );
-// sip Ð¼ÐµÑ‚Ð¾Ð´Ñ‹
+// sip ìåòîäû
 $ result  =  $ api -> getSip ();
 $ result  =  $ api -> getSipStatus ( $ sip );
 $ result  =  $ api -> getSipRedirection ( $ sip );
 $ result  =  $ api -> setSipCallerId ( $ sip , $ sourceNumber );
 $ result  =  $ api -> setSipRedirectionNumber ( $ sip , $ destinationNumber );
 $ result  =  $ api -> setSipRedirectionStatus ( $ sip , false );
-// ÑÑ‚Ð°Ñ‚Ð¸ÑÑ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ðµ Ð¼ÐµÑ‚Ð¾Ð´Ñ‹
+// ñòàòèñòè÷åñêèå ìåòîäû
 $ result  =  $ api -> getStatistics ();
 $ result  =  $ api -> getPbxStatistics ();
 $ result  =  $ api -> getDirectNumbers ();
-// Ð´Ñ€ÑƒÐ³Ð¸Ðµ Ð¼ÐµÑ‚Ð¾Ð´Ñ‹
+// äðóãèå ìåòîäû
 $ result  =  $ api -> requestCallback ( $ pbx , $ destinationNumber );
 $ result  =  $ api -> numberLookup ( $ destinationNumber );
 $ result  =  $ api -> numberLookupMultiple ([ $ sourceNumber , $ destinationNumber ]);
